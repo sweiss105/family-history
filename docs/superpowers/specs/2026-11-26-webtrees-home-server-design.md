@@ -77,9 +77,12 @@ from these values. After the first login, the owner changes the admin password
 in webtrees and can blank `WT_PASS` in `.env`.
 
 **Cloudflare:** one public hostname on the existing tunnel:
-`family.weiss-audio.com` → `http://localhost:8095`. It is added only once
-webtrees is up and the privacy settings are applied, so the site is never
-reachable while it's still open. Added by a Claude session that has working
+`family.weiss-audio.com` → `http://localhost:8095`. It is added once the
+admin account exists and account approval is switched on, but **before any
+family data is imported**. That way there's no open setup wizard to hijack,
+and nothing private can be seen. Setup happens through the real URL, because
+webtrees redirects everything to `BASE_URL`. Data is imported only after a
+test confirms that signed-out visitors are sent to the login page. Added by a Claude session that has working
 Cloudflare tools if one is available; otherwise by the owner in the dashboard.
 The README documents both ways.
 
